@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(to right, #e0f2f1, #f1f8e9);
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            animation: fadeInUp 0.8s ease-out;
+        }
+        .form-control, .form-select {
+            border-radius: 10px;
+        }
+        .info-box {
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 14px;
+            margin-bottom: 10px;
+            border-left: 5px solid #ff9800;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .result-box {
+            background: #e3f2fd;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 5px solid #2196f3;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Beating heart animation */
+        .heart {
+            color: red;
+            font-size: 50px;
+            animation: beat 1s infinite;
+            text-align: center;
+        }
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Fade animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Animated heart -->
+    <div class="heart mb-3">❤️</div>
+    <h2 class="text-center mb-4">Heart Disease Prediction</h2>
+
+    <div class="row">
+        <!-- Form -->
+        <div class="col-lg-8">
+            <div class="card p-4">
+                <form action="/predict" method="post">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Gender</label>
+                            <select class="form-select" name="male">
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Age</label>
+                            <input type="number" class="form-control" name="age">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Current Smoker</label>
+                            <select class="form-select" name="currentSmoker">
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Cigarettes Per Day</label>
+                            <input type="number" class="form-control" name="cigsPerDay">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">BP Medications</label>
+                            <select class="form-select" name="BPMeds">
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Prevalent Stroke</label>
+                            <select class="form-select" name="prevalentStroke">
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Prevalent Hypertension</label>
+                            <select class="form-select" name="prevalentHyp">
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Diabetes</label>
+                            <select class="form-select" name="diabetes">
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Total Cholesterol</label>
+                            <input type="number" class="form-control" name="totChol">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Systolic BP</label>
+                            <input type="number" class="form-control" name="sysBP">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Diastolic BP</label>
+                            <input type="number" class="form-control" name="diaBP">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">BMI</label>
+                            <input type="number" step="0.1" class="form-control" name="BMI">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Heart Rate</label>
+                            <input type="number" class="form-control" name="heartRate">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Glucose Level</label>
+                            <input type="number" class="form-control" name="glucose">
+                        </div>
+                    </div>
+
+                    <button class="btn btn-danger w-100">Predict</button>
+                </form>
+            </div>
+
+            {% if prediction %}
+            <div class="result-box">
+                <h5>Prediction Result</h5>
+                <p>{{ prediction }}</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Info Sidebar -->
+        <div class="col-lg-4">
+            <div class="info-box"><b>BMI:</b> Normal range is 18.5 – 24.9</div>
+            <div class="info-box"><b>Heart Rate:</b> Normal resting is 60 – 100 bpm</div>
+            <div class="info-box"><b>Total Cholesterol:</b> Less than 200 mg/dL is desirable</div>
+            <div class="info-box"><b>Systolic BP:</b> Normal is less than 120 mmHg</div>
+            <div class="info-box"><b>Diastolic BP:</b> Normal is less than 80 mmHg</div>
+            <div class="info-box"><b>Fasting Glucose:</b> 70 – 99 mg/dL is normal</div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
