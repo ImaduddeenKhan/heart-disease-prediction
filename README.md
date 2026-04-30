@@ -1,126 +1,129 @@
-# ❤️ Heart Disease Prediction System
+<div align="center">
+  <h1>Heart Disease Risk Predictor</h1>
+  <p><strong>Predict 10-year heart disease risk from clinical inputs in seconds.</strong></p>
+  <p>A machine-learning powered Flask app that turns patient data into an interpretable risk signal for early screening.</p>
 
-> **Predict your 10-year heart disease risk using Machine Learning & Flask Web App**  
+  <p>
+    <img alt="Build" src="https://img.shields.io/badge/Build-Not%20configured-lightgrey" />
+    <img alt="License" src="https://img.shields.io/badge/License-Not%20specified-lightgrey" />
+    <img alt="Python" src="https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white" />
+    <img alt="Flask" src="https://img.shields.io/badge/Flask-Framework-000000?logo=flask&logoColor=white" />
+    <img alt="scikit-learn" src="https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikitlearn&logoColor=white" />
+  </p>
 
-This project is a **Machine Learning-powered web application** that predicts the likelihood of a person developing heart disease within 10 years based on their health data. It combines **data science**, **AI**, and a **user-friendly interface** to make preventive healthcare more accessible.  
+  <p>
+    <a href="#-project-overview">Overview</a> •
+    <a href="#-installation--setup">Setup</a> •
+    <a href="#-project-structure">Structure</a> •
+    <a href="#-future-improvements">Roadmap</a>
+  </p>
+</div>
 
 ---
 
-## 📋 Table of Contents
-- [About the Project](#-about-the-project)
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Data Features](#-data-features)
-- [How It Works](#-how-it-works)
-- [Screenshots](#-screenshots)
-- [Setup Instructions](#-setup-instructions)
+## ⚡ 1-Minute Overview
+- **What it does:** Predicts a patient’s 10-year heart disease risk using a trained ML model.
+- **Why it matters:** Early risk detection enables preventive action and informed clinical follow-up.
+- **Key features:** Web form UI, real-time predictions, trained Random Forest model, saved scaler/model artifacts.
+- **Tech stack:** Python, Flask, scikit-learn, NumPy, Bootstrap.
 
 ---
 
-## 📖 About the Project
-Heart disease is one of the leading causes of death globally. Early detection can **save lives**.  
-This project predicts whether a person is at risk of developing heart disease in the next 10 years using **classification algorithms**. The model is integrated into a **Flask web application**, allowing anyone to input their health data and get instant predictions.
+## 🚀 Project Overview
+This project delivers a clean, production-style demo of a heart disease risk prediction pipeline. A trained model (Random Forest) and scaler are packaged with a Flask web app, allowing users to input health metrics and receive an instant risk classification.
 
-**Benefits:**
-- Early detection for timely intervention
-- Accessible via an easy-to-use web app
-- Powered by **Machine Learning** for accurate predictions
+**Note:** This is an educational project and not intended for clinical decision-making.
+
+---
+
+## 🧠 Problem & Solution
+**Problem:** Heart disease remains a leading global cause of mortality, and early risk detection is often missed in routine care.  
+**Solution:** A lightweight ML system that surfaces a risk signal from common clinical inputs, wrapped in a user-friendly web interface for quick assessment.
 
 ---
 
 ## ✨ Features
-✅ Predicts **10-year heart disease risk**  
-✅ Multiple machine learning algorithms tested — **Random Forest** performed best  
-✅ **Flask Web App** for user-friendly interaction  
-✅ Detailed model evaluation with **confusion matrix & classification report**  
-✅ Responsive **Bootstrap-based UI**  
-✅ Saves trained models for quick future predictions  
+- 🔍 **Instant Risk Prediction** from clinical inputs
+- 🧪 **Random Forest Model** with saved artifacts for repeatable inference
+- 🧭 **Clean Web UI** built with Bootstrap and Jinja2
+- 📦 **Reusable Assets** (model + scaler stored in `Models/`)
+- 🗂️ **Training Notebook** included for transparency and iteration
 
 ---
 
 ## 🛠 Tech Stack
-
-**Programming Language:**
-- Python 🐍
-
-**Machine Learning & Data Science:**
-- Pandas, NumPy
-- Scikit-learn
-- XGBoost
-- Pickle (for model persistence)
-
-**Web Framework:**
-- Flask
-
-**Frontend:**
-- HTML, CSS, Bootstrap
-- Jinja2 templating
-
-**Development:**
-- Jupyter Notebook
-- PyCharm
+**Core:** Python, Flask, scikit-learn, NumPy  
+**UI:** HTML, CSS, Bootstrap, Jinja2  
+**Artifacts:** Pickle (`rf_classifier.pkl`, `scaler.pkl`)  
+**Data:** Framingham dataset (`datasets_4123_6408_framingham.csv`)
 
 ---
 
-## 📊 Data Features
+## 📸 Screenshots / Demo
+- **Local demo:** Run the app and open `http://127.0.0.1:5000`
+- **Screenshot:** Add `assets/demo.png` and update the link below.
 
-| Feature | Description |
-|---------|-------------|
-| `male` | Gender: 1 = Male, 0 = Female |
-| `age` | Age in years |
-| `education` | Education level (later dropped as irrelevant) |
-| `currentSmoker` | 1 = Yes, 0 = No |
-| `cigsPerDay` | Cigarettes smoked per day |
-| `BPMeds` | Blood Pressure Medication (1/0) |
-| `prevalentStroke` | History of stroke (1/0) |
-| `prevalentHyp` | History of hypertension (1/0) |
-| `diabetes` | Diabetes status (1/0) |
-| `totChol` | Total cholesterol |
-| `sysBP` | Systolic blood pressure |
-| `diaBP` | Diastolic blood pressure |
-| `BMI` | Body Mass Index |
-| `heartRate` | Resting heart rate |
-| `glucose` | Blood glucose level |
-| **Target** | 10-year CHD risk: 1 = Yes, 0 = No |
+  ```text
+  ![App Screenshot](assets/demo.png)
+  ```
 
 ---
 
-## ⚙ How It Works
-1. **Data Preprocessing** – Missing values handled, scaling applied  
-2. **Data Balancing** – Over-sampling to address class imbalance  
-3. **Model Training** – Tested Logistic Regression, Decision Tree, Random Forest, SVM, KNN, AdaBoost, Gradient Boosting, XGBoost  
-4. **Evaluation** – Accuracy, precision, recall, F1-score  
-5. **Model Saving** – Trained model & scaler saved with Pickle  
-6. **Web Integration** – Flask app for real-time prediction  
-
-
-
----
-
-## 🚀 Setup Instructions
-
+## ⚙️ Installation & Setup
 ```bash
-# 1. Clone this repository
+# 1. Clone the repository
 git clone https://github.com/ImaduddeenKhan/heart-disease-prediction.git
 cd heart-disease-prediction
 
-# 2. Create virtual environment
+# 2. Create and activate a virtual environment
 python -m venv venv
-source venv/bin/activate      # Mac/Linux
-venv\Scripts\activate         # Windows
+source venv/bin/activate        # Mac/Linux
+venv\Scripts\activate           # Windows
 
 # 3. Install dependencies
-pip install -r requirements.txt
+pip install flask numpy scikit-learn
 
-# 4. Run the Flask app
+# 4. Run the application
 python app.py
 
 # 5. Open in browser
 http://127.0.0.1:5000
+```
 
-
-
+**Important:** `app.py` currently loads model artifacts via absolute Windows paths. Update those paths to point to `Models/rf_classifier.pkl` and `Models/scaler.pkl` on your machine.
 
 ---
 
-If you want, I can also make a **fancier version with shields.io badges**, animated GIFs, and an **interactive model diagram** so your GitHub visitors get a “wow” effect. That’ll make your project look like a top-tier portfolio piece.
+## 📂 Project Structure
+```text
+heart-disease-prediction/
+├── app.py
+├── Models/
+│   ├── rf_classifier.pkl
+│   └── scaler.pkl
+├── templates/
+│   └── index.html
+├── Modeling.ipynb
+├── datasets_4123_6408_framingham.csv
+└── README.md
+```
+
+---
+
+## 🔮 Future Improvements
+- Add a REST API endpoint for programmatic predictions
+- Introduce model calibration and confidence scores
+- Improve data validation and input constraints
+- Dockerize for one-command setup
+- Add automated tests and CI pipeline
+
+---
+
+## 🤝 Contribution Guidelines
+Contributions are welcome! Please open an issue to discuss changes before submitting a PR.  
+Keep PRs focused, provide clear descriptions, and include relevant screenshots for UI changes.
+
+---
+
+## 📜 License
+No license file is currently provided. If you intend to make this reusable, add a `LICENSE` file and update this section.
